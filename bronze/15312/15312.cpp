@@ -15,21 +15,17 @@ int main() {
   N *= 2;
 
   int n[N];
+  int cnt = 0;
 
-  for (int i=0; i<N; i += 2) {
-    n[i] = A[C[0][i % 3] - 65];
-    n[i + 1] = A[C[1][i % 3] - 65];
+  for (int i=0; i<N; i++) n[i] = A[C[i % 2][i / 2] - 65];
+
+  while(cnt != N - 2) {
+    for (int i=0; i<N - 1 - cnt; i++) n[i] = (n[i] + n[i + 1]) % 10;
+
+    cnt++;
   }
 
-  for (int i=0; i<N; i++) printf("%d ", n[i]);
+  printf("%d%d", n[0], n[1]);
 
   return 0;
 }
-
-// CJM
-// HER
-
-// 1 2 2
-// 3 3 2
-
-// 1 3 2 3 2 2
