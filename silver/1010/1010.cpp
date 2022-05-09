@@ -19,13 +19,14 @@ int main() {
     int r = cases[i][IDX_R];
     int n = cases[i][IDX_N];
 
-    double res = 1;
+    int res = 1;
 
     for (int j=0; j<r; j++) {
-      res *= static_cast<double>(n - j) / static_cast<double>(r - j);
+      res *= n - j;
+      res /= j + 1;
     }
 
-    printf("%d\n", static_cast<int>(round(res)));
+    printf("%d\n", res);
   };
 
   return 0;
