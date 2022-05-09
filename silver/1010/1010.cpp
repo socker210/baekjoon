@@ -1,7 +1,8 @@
 #include <iostream>
+#include <cmath>
 
-#define LEFT 0
-#define RIGHT 1
+#define IDX_N 0
+#define IDX_R 1
 
 using namespace std;
 
@@ -10,23 +11,21 @@ int main() {
 
   scanf("%d", &N);
 
-  int n[N][2];
+  int cases[N][2];
 
-  for (int i=0; i<N; i++) scanf("%d %d", &n[i][LEFT], &n[i][RIGHT]);
+  for (int i=0; i<N; i++) scanf("%d %d", &cases[i][IDX_R], &cases[i][IDX_N]);
 
   for (int i=0; i<N; i++) {
-    int left = n[i][LEFT];
-    int right = n[i][RIGHT];
+    int r = cases[i][IDX_R];
+    int n = cases[i][IDX_N];
 
-    int dp[right + 1];
+    double res = 1;
 
-    dp[0] = 1;
-
-    for (int j=1; j<=right; j++) {
-      dp[j] = dp[j - 1] * j;
+    for (int j=0; j<r; j++) {
+      res *= static_cast<double>(n - j) / static_cast<double>(r - j);
     }
 
-    printf("%d\n", dp[right]);
+    printf("%d\n", static_cast<int>(round(res)));
   };
 
   return 0;
