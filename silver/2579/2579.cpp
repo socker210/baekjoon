@@ -7,23 +7,26 @@ int main() {
 
 	scanf("%d", &N);
 
-	int n[N];
+	int n[N + 1];
 
-	for (int i=0; i<N; i++) scanf("%d", &n[i]);
+	n[0] = 0;
 
-	int dp[N];
+	for (int i=1; i<=N; i++) scanf("%d", &n[i]);
 
-	dp[0] = n[0];
-	dp[1] = n[0] + n[1];
+	int dp[N + 1];
 
-	for (int i=2; i<N; i++) {
-		int a = n[i] + dp[i - 1] - n[i - 2];
+	dp[0] = 0;
+	dp[1] = n[1];
+	dp[2] = n[1] + n[2];
+
+	for (int i=3; i<=N; i++) {
+		int a = n[i] + n[i - 1] + dp[i - 3];
 		int b = n[i] + dp[i - 2];
 
-		dp[i] = a > b ? n[i] + n[i - 1] + (i > 2 ? dp[i - 3] : 0) : b;
+		dp[i] = a > b ? a : b;
 	}
 
-	printf("%d", dp[N - 1]);
+	printf("%d", dp[N]);
 
 	return 0;
 }
