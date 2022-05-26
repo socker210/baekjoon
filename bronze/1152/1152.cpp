@@ -1,14 +1,23 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
 int main() {
-  string str;
+  string str, buf;
 
   getline(cin, str);
 
-  // TODO: 처리하기
+  istringstream ss(str);
+
+  int idx = 0;
+
+  while(getline(ss, buf, ' ')) {
+    if(buf.length() != 0) idx++;
+  }
+
+  printf("%d", idx);
 
   return 0;
 }
