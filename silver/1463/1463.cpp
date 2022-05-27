@@ -3,35 +3,31 @@
 using namespace std;
 
 int main() {
-	int N = 10;
+	int N;
 
-	// 15
-	// 15 > 5 > 4 > 2 > 1
+	scanf("%d", &N);
 
-	// 1 > 
+	int DP[N + 1];
 
-	// 2 or 3
+	for (int i=0; i<=N; i++) DP[i] = 0;
 
-  // 3 > 
+	DP[2] = 1;
+	DP[3] = 1;
+
+	int t_idx[3];
+
+	for (int i=4; i<=N; i++) {
+		t_idx[0] = i - 1;
+		t_idx[1] = i % 3 == 0 ? i / 3 : t_idx[0];
+		t_idx[2] = i % 2 == 0 ? i / 2 : t_idx[0];
+
+		int t = DP[t_idx[0]] < DP[t_idx[1]] ? t_idx[0] : t_idx[1];
+		int idx = DP[t] < DP[t_idx[2]] ? t : t_idx[2];
+
+		DP[i] = DP[idx] + 1;
+	}
+
+	printf("%d", DP[N]);
 	
 	return 0;
 }
-
-// 반례
-// 1000000
-// 19
-
-// 10 to 1
-// 이 세가지 연산중 최적의 연산을 선택해야함
-
-// N
-// N / 3 (단, N mod 3 = 0) = N1'
-// N / 2 (단, N mod 2 = 0) = N2'
-// N - 1 = N3'
-
-// N1' 
-// N2'
-// N3'
-
-// 위의 케이스에서 3가지 다 연산 후 최소값 가져오기
-// 
