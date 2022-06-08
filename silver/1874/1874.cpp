@@ -7,18 +7,33 @@ int main() {
 
   freopen("example.txt", "r", stdin);
 
-  int N, n;
+  int N;
 
   cin >> N;
 
-  int T[N], O[N * 2],top = -1;
+  int S[N], T[N], o_idx = 0, t, top = -1, p = 0;
+  char O[N * 2];
 
-  for (int i=1; i<=N; i++) {
-    cin >> n;
+  for (int i=0; i<N; i++) {
+    cin >> t;
 
-    // TODO: 처리하기
-    
+    S[i] = t;
+    T[++top] = i + 1;
+
+    O[o_idx++] = '+';
+
+    for (int j=p; top > -1 && S[j] == T[top]; j++) {
+      O[o_idx++] = '-';
+
+      top--;
+      p++;
+    }
   }
+
+  if (top == -1) {
+    for (int i=0; i<N * 2; i++) cout << O[i] << '\n';
+  } else cout << "NO";
+  
 
   return 0;
 }
