@@ -1,42 +1,47 @@
 #include <iostream>
 using namespace std;
 
+void swap(int* a, int* b) {
+  int t = *a;
+  *a = *b;
+  *b = t;
+}
+
 int main() {
   ios_base::sync_with_stdio(false); cin.tie(NULL);
   freopen("example.txt", "r", stdin);
-  int N; cin >> N;
+  int N;
+  cin >> N;
   while(N--) {
-    int C, T;
+    int C, T, ans;
     cin >> C >> T;
-    int arr[C];
-    for (int i=0; i<C; i++) {
-      int t;
-      cin >> t;
-      arr[i] = t;
+    int heap[C], s = 0;
+    for (int i=0;i <C;i ++) {
+      int n, j;
+      cin >> n;
+      j = s;
+      heap[s] = n;
+      while(j != 0 && heap[j] > heap[(j - 1) / 2]) {
+        swap(&heap[j], &heap[(j - 1) / 2]);
+        j = (j - 1) / 2;
+      }
+      s++;
     }
-    for (int i=(C/2)-1; i>=0; i--) {
-      cout << i << ' ' <<  i * 2 + 1 << ' ' << i * 2 + 2 << '\n';
+    int t_val = heap[T], idx = 0;
+    while(s--) {
+      int j;
+      j = 0;
+      ans = heap[s] == t_val ? idx++ : ans;
+      swap(&heap[j], &heap[s]);
+      while(true) {
+        // TODO: 이거 break조건 처리하기, 위의 ans처리하기
+        int c_idx = heap[j + 1] > heap[j + 2] ? j + 1 : j + 2;
+        if (heap[c_idx] > heap[j]) {
+          swap(&heap[c_idx], &heap[j]);
+          j = c_idx;
+        }else break;
+      }
     }
-
-
-    // for (int i=0; i<C; i++) cout << arr[i] << '\n';
+    cout << ans << '\n';
   }
-  return 0;
 }
-
-// 0 -> 1, 2
-// 1 -> 3, 4
-// 2 -> 5
-
-// i=0; i<6; i++
-
-// 루트 -> (i - 1) / 2
-// 왼쪽 -> i * 2 + 1
-// 오른쪽 -> i * 2 + 2
-
-// 0: 루트
-// 1: 루트 왼쪽 
-// 2: 루트 오른쪽
-// 3: 루트 왼쪽 왼쪽
-// 4: 루트 왼쪽 오른쪽
-// 5: 루트 오른쪽 왼쪽
