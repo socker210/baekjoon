@@ -28,12 +28,13 @@ int main() {
       }
       s++;
     }
-    int target_idx = T;
+    int front, rear, cnt, target_idx;
+    front = cnt = 0;
+    rear = C - 1;
+    target_idx = T;
     while(true) {
-      int front, rear, cnt;
-      front = cnt = 0;
-      rear = C - 1;
       if (heap[0] == queue[front]) {
+        cnt++;
         if (target_idx == 0) {
           cout << cnt << '\n';
           break;
@@ -49,16 +50,14 @@ int main() {
             else break;
             j = c_idx;
           }
+          target_idx--;
           front++;
         }
-        target_idx--;
       } else {
-        // TODO: 이거 오류 찾기
         int t = queue[front];
-        for (int i=front+1; i<rear-1; i++) queue[i-1] = queue[i];
+        for (int i=front+1; i<=rear; i++) queue[i-1] = queue[i];
         queue[rear] = t;
-        cnt++;
-        target_idx = t == queue[target_idx] ? rear : target_idx - 1;
+        target_idx = target_idx == 0 ? rear : target_idx - 1;
       }
     }
   }
