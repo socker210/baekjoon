@@ -1,0 +1,26 @@
+{
+  "name": "baekjoon",
+  "version": "0.0.1",
+  "description": "Baekjoon",
+  "author": "socker210",
+  "license": "MIT",
+  "keywords": [
+    "data-structure",
+    "algorithm",
+    "baekjoon"
+  ],
+  "type": "module",
+  "scripts": {
+    "exec": "node exec.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.0",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {
+    "command-line-args": "^5.2.1"
+  }
+}
