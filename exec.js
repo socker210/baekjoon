@@ -122,23 +122,8 @@ async function main() {
     return spawnChild(outPathname)
   }
 
-  const processes = []
-
   for (const data of inputData) {
-    const process = () => {
-      return new Promise((resolve) => {
-        const child = spawnChild(outPathname, data)
-
-        child.stdout.on('data', () => resolve())
-        child.stderr.on('data', () => resolve())
-      })
-    }
-
-    processes.push(process)
-  }
-
-  for (const process of processes) {
-    await process()
+    spawnChild(outPathname, data)
   }
 }
 
