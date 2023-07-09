@@ -11,8 +11,8 @@
   ],
   "type": "module",
   "scripts": {
-    "solve": "node solve.js",
-    "challenge": "node challenge.js"
+    "solve": "node scripts/solve.js",
+    "challenge": "node scripts/challenge.js"
   },
   "devDependencies": {
     "@types/node": "^20.4.0",

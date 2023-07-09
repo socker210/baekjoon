@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 import inquirer from 'inquirer'
 import chalk from 'chalk'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const __dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 
 function createREADME(pathname, problem) {
   const template = `## 문제 링크\n\n- https://www.acmicpc.net/problem/${problem}`

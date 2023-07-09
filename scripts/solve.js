@@ -78,7 +78,10 @@ function compileCpp(dirname, filename) {
 }
 
 async function main() {
-  const __dirname = path.dirname(fileURLToPath(import.meta.url))
+  const __dirname = path.join(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '..',
+  )
 
   const args = commandLineArgs([
     {
