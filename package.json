@@ -11,7 +11,8 @@
   ],
   "type": "module",
   "scripts": {
-    "exec": "node exec.js"
+    "solve": "node solve.js",
+    "challenge": "node challenge.js"
   },
   "devDependencies": {
     "@types/node": "^20.4.0",
@@ -21,6 +22,8 @@
     "prettier": "^3.0.0"
   },
   "dependencies": {
-    "command-line-args": "^5.2.1"
+    "chalk": "^5.3.0",
+    "command-line-args": "^5.2.1",
+    "inquirer": "^9.2.7"
   }
 }
