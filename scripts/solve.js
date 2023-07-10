@@ -141,6 +141,7 @@ async function main() {
     processes.push(process)
   }
 
+  // 순서대로 처리하기 위해
   for (const process of processes) {
     await process()
   }
