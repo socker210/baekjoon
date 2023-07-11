@@ -3,6 +3,7 @@ import path from 'path'
 import { exec, spawn } from 'child_process'
 import { fileURLToPath } from 'url'
 import commandLineArgs from 'command-line-args'
+import chalk from 'chalk'
 
 function replaceExt(filename, ext = '.cpp', replaceStr = '', withExt = false) {
   return filename.replace(ext, replaceStr) + (withExt ? ext : '')
@@ -54,16 +55,23 @@ function spawnChild(pathname, inputData) {
   child.stdout.on('data', printOutData)
   child.stderr.on('data', printErrData)
 
+  child.on('exit', (code, signal) => {
+    if (code) {
+      printErrData(`Exit code : ${code}`)
+    } else if (signal) {
+      printErrData(`Exit signal : ${signal}`)
+    }
+  })
+
   return child
 }
 
 function printOutData(data) {
   console.log(data.toString())
-  console.log('\n')
 }
 
 function printErrData(data) {
-  console.log(data.toString())
+  console.error(chalk.red(data.toString()))
 }
 
 function compileCpp(dirname, filename) {
